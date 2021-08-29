@@ -2,7 +2,7 @@
 require_once dirname(__FILE__) . '/includes/Admin.php';
 require_once dirname(__FILE__) . '/includes/PublishPost.php';
 /*
-Plugin Name: WP speisekarte
+Plugin Name: Speisekarte
 Description: Sei Teil der Zukunft und lasse dein Menü digital werden
 Author: Malith Priyashan
 Version: 1.0.0
