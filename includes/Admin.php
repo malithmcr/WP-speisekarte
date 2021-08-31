@@ -1,5 +1,4 @@
 <?php
-require_once dirname(__FILE__) . '/PublishPost.php';
 require_once dirname(__FILE__) . '/translations/useTranslations.php';
 /**
  * User: Malith Priyashan
@@ -63,14 +62,13 @@ class WpDraftPublishedAdminPage
             if ($_POST['wp-menu-card'] === 'save-token') {
                 if ($_POST['wp-menu-card-token'] !== '') {
                     $data = array(
-                        'token' => $_POST['wp-menu-card-token'],
+                        'token' => sanitize_text_field($_POST['wp-menu-card-token']),
                     );
                     global $wpdb;
                     $table_name = $wpdb->prefix . 'menu_cards';
                     $wpdb->insert($table_name, $data, '%s');
-                    echo '<div class="notice notice-info publishing-drafts"><p>Account Connected!</p></div>';
                 } else {
-                    echo '<div class="notice notice-info publishing-drafts"><p>Invalid Token!</p></div>';
+                    echo esc_html('Invalid Token!');
                 }
             }
         }
@@ -83,8 +81,8 @@ class WpDraftPublishedAdminPage
         $this->pageStyles();
         $menus = $this->getMenus();
         ?>
-		<h2><?php echo useTranslations($this->language, 'Wordpress Menu Card'); ?></h2>
-		<label><?php echo useTranslations($this->language, 'Create your menucard easily.') ?> </label>
+		<h2><?php echo esc_html(useTranslations($this->language, 'Wordpress Menu Card')); ?></h2>
+		<label><?php echo esc_html(useTranslations($this->language, 'Create your menucard easily.')); ?> </label>
 		<br/>
 		<hr/>
 		<?php if($this->getToken() != ""): ?> 
@@ -95,8 +93,8 @@ class WpDraftPublishedAdminPage
 			</tr>
 			<?php foreach($menus as $menu): ?>
 				<tr>
-							<td><?php echo $menu->name; ?></td>
-							<td><input type="text" value="[wp-speisekarte rid='<?php echo $menu->restaurants[0]->id; ?>' mid='<?php echo $menu->id; ?>']" style="width:100%;" readonly /></td>
+							<td><?php echo esc_html($menu->name); ?></td>
+							<td><input type="text" value="[wp-speisekarte rid='<?php echo esc_html($menu->restaurants[0]->id); ?>' mid='<?php echo esc_html($menu->id); ?>']" style="width:100%;" readonly /></td>
 						</tr>
 						<?php endforeach; ?>
 		</table>
@@ -104,7 +102,7 @@ class WpDraftPublishedAdminPage
 		<br>
 		<?php if($this->getToken() == ""): ?> 
 		<form method="post" action="admin.php?page=menu-cards">
-		<input type="text" id="token" name="wp-menu-card-token" placeholder="token" value="<?php  echo $this->getToken(); ?>" required/>
+		<input type="text" id="token" name="wp-menu-card-token" placeholder="token" value="<?php  echo esc_html($this->getToken()); ?>" required/>
 		<input type="hidden" name="wp-menu-card" value="save-token"/>
 		<input type="submit" id="submit"  target="new" class="button button-primary" value="Connect your account" />
 		</form>
@@ -112,7 +110,7 @@ class WpDraftPublishedAdminPage
 		<?php endif;?>
 		<br /><br />
 		<hr />
-		<h2><?php echo useTranslations($this->language, 'Tutorials'); ?></h2>
+		<h2><?php echo esc_html(useTranslations($this->language, 'Tutorials')); ?></h2>
 		<iframe width="560" height="315" src="https://www.youtube.com/embed/hv41Q_C9qik" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 		<?php

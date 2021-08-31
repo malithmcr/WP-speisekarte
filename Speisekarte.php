@@ -1,6 +1,5 @@
 <?php
 require_once dirname(__FILE__) . '/includes/Admin.php';
-require_once dirname(__FILE__) . '/includes/PublishPost.php';
 /*
 Plugin Name: Speisekarte
 Description: Sei Teil der Zukunft und lasse dein Menü digital werden
@@ -41,8 +40,8 @@ if (!class_exists('wpMenuCard')) {
 		{
 
 			add_menu_page(
-				'Menu Cards',
-				'Menu Cards',
+				'Speisekarte',
+				'Speisekarte',
 				'manage_options',
 				'menu-cards',
 				array(
@@ -87,7 +86,7 @@ if (!class_exists('wpMenuCard')) {
 				'rid' => null,
 				'mid' => null
 			 ), $atts));
-			 return '<iframe src="https://share.speisekarte-erstellen.de/'.$rid.'/'.$mid.'"  style="display:block;border:0;min-width:800px;min-height:800px;" allow="fullscreen"></iframe>';
+			 return '<iframe src="https://share.speisekarte-erstellen.de/'.esc_html($rid).'/'.esc_html($mid).'"  style="display:block;border:0;min-width:800px;min-height:800px;" allow="fullscreen"></iframe>';
 		}   
  
 
