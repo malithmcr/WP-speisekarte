@@ -81,8 +81,8 @@ class WpDraftPublishedAdminPage
         $this->pageStyles();
         $menus = $this->getMenus();
         ?>
-		<h2><?php echo esc_html(useTranslations($this->language, 'Wordpress Menu Card')); ?></h2>
-		<label><?php echo esc_html(useTranslations($this->language, 'Create your menucard easily.')); ?> </label>
+		<h2><?php echo esc_html(SKDE_useTranslations($this->language, 'Wordpress Menu Card')); ?></h2>
+		<label><?php echo esc_html(SKDE_useTranslations($this->language, 'Create your menucard easily.')); ?> </label>
 		<br/>
 		<hr/>
 		<?php if($this->getToken() != ""): ?> 
@@ -110,7 +110,7 @@ class WpDraftPublishedAdminPage
 		<?php endif;?>
 		<br /><br />
 		<hr />
-		<h2><?php echo esc_html(useTranslations($this->language, 'Tutorials')); ?></h2>
+		<h2><?php echo esc_html(SKDE_useTranslations($this->language, 'Tutorials')); ?></h2>
 		<iframe width="560" height="315" src="https://www.youtube.com/embed/hv41Q_C9qik" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 		<?php
